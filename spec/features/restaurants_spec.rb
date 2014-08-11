@@ -74,5 +74,21 @@ describe 'restaurant' do
 		end
 	end
 
+	describe 'add a review' do
+
+		before(:each) do
+			Restaurant.create(id: "1", name: "Nandos",
+				cuisine: "chicken")
+		end
+
+		it 'a review can be added' do
+			visit('/restaurants')
+			click_link('Add review')
+			expect(current_path).to eq('/restaurants/1/reviews/new')
+			find("option[value='1']").click
+			click_button 'Add review'
+			expect(Review.count).to eq 1
+		end
+	end
 
 end

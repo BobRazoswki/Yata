@@ -73,3 +73,7 @@ in controller restao.all
  bin/rails g migration add_phone_to_restaurants  phone:boolean???
 
  validation / reviews
+
+ > bin/rails generate model Review review:integer restaurant:references
+
+ <%= options_for_select([['muy malo', 1], ['malo', 2], ['buen', 3],['muy buen', 4],['Jean', 5]]) %>

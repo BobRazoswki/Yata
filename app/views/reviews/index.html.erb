@@ -1,0 +1,11 @@
+<% if @reviews.any? %>
+	<% @reviews.each do |review| %>
+		<h1> <%= review.review %> </h1>
+	<% end %>
+<% else %>
+<h1> no reviews </h1>
+<% end %>
+<br>
+<h4>
+<%= link_to 'Add review', new_restaurant_review_path(restaurant) %>
+</h4>

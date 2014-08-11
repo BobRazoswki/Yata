@@ -4,9 +4,12 @@
 		<p> <%= restaurant.cuisine %> </p>
 		<%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
 		<%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
+		<%= link_to "Add review", new_restaurant_review_path(restaurant) %>
 	<% end %>
 <% else %>
 <h1> no restaurants </h1>
 <% end %>
-
+<br>
+<h4>
 <%= link_to 'Add restaurant', new_restaurant_path %>
+</h4>
