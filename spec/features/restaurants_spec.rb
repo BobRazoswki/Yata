@@ -10,7 +10,8 @@ describe 'restaurant' do
 		end
 	end
 
-	context 'bringing the db' do
+	context 'bringing to the db' do
+		
 		before(:each) do
 			Restaurant.create(name: "Nandos",
 				cuisine: "chicken")
@@ -21,5 +22,57 @@ describe 'restaurant' do
 			expect(page).to have_content('Nandos chicken')
 		end
 
+		it 'raise the counter of the restaurant' do
+			expect(Restaurant.count).to eq 1
+		end
 	end
+
+	describe 'visitors can create restaurants' do
+		before(:each) do
+			Restaurant.create(name: "Nandos",
+				cuisine: "chicken")
+		end
+		it 'ADD' do
+			visit('/restaurants')
+			 click_link 'Add restaurant'
+			 fill_in 'Name', :with => "Nandos"
+			 fill_in 'Cuisine', :with => "chicken"
+			 click_button 'Add restaurant'
+
+			 expect(page). to have_content("Nandos chicken")
+			 expect(current_path).to eq('/restaurants')
+		end
+	end
+
+	describe 'visitors can edit restaurants' do
+		before(:each) do
+			Restaurant.create(name: "Nandos",
+				cuisine: "chicken")
+		end
+		it 'UPDATE / EDIT' do
+			visit('/restaurants')
+			 click_link 'Edit Nandos'
+			 fill_in 'Name', :with => "Best"
+			 fill_in 'Cuisine', :with => "chicken"
+			 click_button 'Add restaurant'
+			 expect(page).to have_content("Best chicken")
+			 expect(current_path).to eq('/restaurants')
+		end
+	end
+
+	describe 'visitors can create restaurants' do
+		before(:each) do
+			Restaurant.create(name: "Nandos",
+				cuisine: "chicken")
+		end
+		it 'DELETE' do
+			visit('/restaurants')
+			 click_link 'Delete Nandos'
+			 expect(page).not_to have_content("Nandos chicken")
+			 expect(page).to have_content("deleted")
+			 expect(current_path).to eq('/restaurants')
+		end
+	end
+
+
 end
