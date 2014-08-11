@@ -1,0 +1,72 @@
+High level test
+
+right all of them 
+
+1 feature a time 
+
+Users/reviews/restaurant 
+
+restao: state of the db = 0 
+add a restaurant 
+db = 1 
+give a message 
+
+
+rails new myApp --database=postgresql -T
+cd myApp
+
+bin/rails generate rspec:install
+
+require 'capybararails' in rails helpers
+
+reauire rqils+helper
+test restaurant
+no restaurant had been addded 
+should display a prompt to add restaurant 
+visit the page
+expect page to have content no restaurant
+expect link to have link add restaurat
+
+bin/rake db:create maybe be possible that you need RAILS_ENV=test
+
+resources :restaurants  ==> generate urls ==> routes.rb
+
+bin/rake routes ==> which url are valid 
+
+bin/rails generate controller restaurants ==> create a new file in controller 
+
+delete spec file created 
+
+go on the controller file ==>
+
+	def index 
+
+	end
+
+go and edit the viwes/index as .html.erb
+
+make pass your test 
+
+run your server ==> bin/rails server 
+
+bring in teh db 
+
+new context in the test, restaurant had been added
+
+before do Restaurant.create('macdo')
+same test with macdo
+
+bin/rails g model restaurant name:string 
+
+the colomn and table are in db migration 
+
+to chnage something
+
+bin/rake db:migrate
+
+to see the current state: schema.rb in db
+
+in the views, if @restaurants.any each loop else pas bon end 
+in controller restao.all
+
+
