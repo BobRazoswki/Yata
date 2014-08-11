@@ -52,10 +52,10 @@ describe 'restaurant' do
 		it 'UPDATE / EDIT' do
 			visit('/restaurants')
 			 click_link 'Edit Nandos'
-			 fill_in 'Name', :with => "Best"
-			 fill_in 'Cuisine', :with => "chicken"
+			 fill_in 'Name', :with => "NandosNew"
+			 fill_in 'Cuisine', :with => "chicken1"
 			 click_button 'Add restaurant'
-			 expect(page).to have_content("Best chicken")
+			 expect(page).to have_content("NandosNew chicken1")
 			 expect(current_path).to eq('/restaurants')
 		end
 	end
