@@ -77,3 +77,13 @@ in controller restao.all
  > bin/rails generate model Review review:integer restaurant:references
 
  <%= options_for_select([['muy malo', 1], ['malo', 2], ['buen', 3],['muy buen', 4],['Jean', 5]]) %>
+
+
+ bin/rails g migration add_rate_to_reviews rate:string
+
+bin/rails g migration add_comment_to_reviews comment:string
+
+bin/rails g migration AddRestaurantIdToReviews restaurant:belongs_to
+ migrate
+
+<%= link_to "Add review", new_restaurant_review_path(restaurant) %>

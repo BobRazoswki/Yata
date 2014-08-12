@@ -1,0 +1,7 @@
+<%= form_for [restaurant, @review] do |f| %>
+
+	<%= f.select(:rate, options_for_select([['muy malo', 1], ['malo', 2], ['buen', 3],['muy buen', 4],['Jean', 5]])) %>
+	<%= f.text_area :comment %>
+	<%= f.submit 'Add review' %>
+ 
+<% end %>

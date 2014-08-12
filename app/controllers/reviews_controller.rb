@@ -1,18 +1,18 @@
 class ReviewsController < ApplicationController
 
 	def index
-		@reviews = Review.all
+		@reviews = Reviews.all
 	end
 
 
-	def new
-		@restaurant = Restaurant.find(params[:restaurant_id])
-		@review = Review.new
-	end
+	# def new
+	# 	@restaurant = Restaurant.find(params[:restaurant_id])
+	# 	@review = Review.new
+	# end
 
 	def create
 		@restaurant = Restaurant.find(params[:restaurant_id])
-		@review = @restaurant.reviews.new(params[:review].permit(:review))
+		@review = @restaurant.reviews.new(params[:review].permit(:comment, :rate))
 
 		if @review.save
    		redirect_to '/restaurants'
