@@ -17,3 +17,37 @@
 .field_with_errors {
 	color: red;
 }
+
+h4 {
+top: 0px;
+position: absolute;
+margin: 0 auto;
+width: 114px;
+}
+
+
+section {
+	width: 600px;
+margin: 25px auto 0px auto;
+-webkit-box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.8);
+box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.8);
+}
+
+aside {
+float: right;
+display: block;
+margin-top: -44px;
+}
+
+
+
+.restaurant_infos {
+
+display: block;
+position: relative;
+
+}
+
+#display_reviews {
+	display: none;
+}

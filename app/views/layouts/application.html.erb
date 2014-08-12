@@ -7,8 +7,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= notice %>
+	<header>
+		<nav>
+			<ul>
+				<li> 
+					<%= link_to 'Add restaurant', new_restaurant_path %>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	 <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
 <%= yield %>
+<script src='/assets/jquery-2.1.1.min.js'>
+	
+</script>
+
+<script>
+$(document).ready(function() {
+	$('.show_reviews').on('click', function() {
+		$(this).siblings().slideDown("slow");
+	});
+});
+</script>
+
+
 
 </body>
 </html>

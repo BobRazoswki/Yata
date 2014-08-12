@@ -87,3 +87,9 @@ bin/rails g migration AddRestaurantIdToReviews restaurant:belongs_to
  migrate
 
 <%= link_to "Add review", new_restaurant_review_path(restaurant) %>
+
+
+ db:rollback STEP=2  grep history on command line 
+ bin/rails console 
+ reload!
+
