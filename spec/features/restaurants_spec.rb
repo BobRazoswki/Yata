@@ -39,7 +39,7 @@ describe 'restaurant' do
 			 fill_in 'Cuisine', :with => "chicken"
 			 click_button 'Add restaurant'
 
-			 expect(page). to have_content("Nandos chicken")
+			 expect(page).to have_content("Nandos chicken")
 			 expect(current_path).to eq('/restaurants')
 		end
 	end
