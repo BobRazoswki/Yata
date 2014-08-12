@@ -2,6 +2,16 @@
 	<% @restaurants.each do |restaurant| %>
 		<h1> <%= restaurant.name %> </h1>
 		<p> <%= restaurant.cuisine %> </p>
+		<ul>
+			<li> <%= restaurant.reviews %></li>
+			<li> <%= restaurant.reviews.all.last.comment %></li>
+			<li> <%= restaurant.reviews.count %></li>
+
+			<% restaurant.reviews.each do |review| %>
+				<li> <%= "#{review.comment} #{review.rate}" %></li>
+			<% end %>
+
+		</ul>
 
 		<%= render 'reviews/review_form', restaurant: restaurant %>
 

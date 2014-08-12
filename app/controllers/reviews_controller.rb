@@ -4,12 +4,6 @@ class ReviewsController < ApplicationController
 		@reviews = Reviews.all
 	end
 
-
-	# def new
-	# 	@restaurant = Restaurant.find(params[:restaurant_id])
-	# 	@review = Review.new
-	# end
-
 	def create
 		@restaurant = Restaurant.find(params[:restaurant_id])
 		@review = @restaurant.reviews.new(params[:review].permit(:comment, :rate))
@@ -19,7 +13,6 @@ class ReviewsController < ApplicationController
   	else
     	render 'new'
   	end
-
 
 	end
 
