@@ -9,7 +9,7 @@ describe 'Review' do
 			visit('/restaurants')
 			find("option[value='1']").click
 			click_button 'Add review'
-			expect(Reviews.count).to eq 1
+			expect(Review.count).to eq 1
 			expect(page).to have_content('muy malo')
 		end
 	end

@@ -1,29 +1,28 @@
+<% @rating = [] %>
+
 <% if @restaurants.any? %>
 	<% @restaurants.each do |restaurant| %>
+
 		<h1> <%= restaurant.name %> </h1>
 		<p> <%= restaurant.cuisine %> </p>
+		<p> AVERAGE: <% restaurant.reviews.all.map do |each| %>
+					 <% @rating << each.rate %>
+					<% end %>
+				 <%=	@rating.sum.to_f / @rating.size %> </p>
 		<ul>
-			<li> <%= restaurant.reviews %></li>
-			<li> <%= restaurant.reviews.all.last.comment %></li>
-			<li> <%= restaurant.reviews.count %></li>
-
 			<% restaurant.reviews.each do |review| %>
 				<li> <%= "#{review.comment} #{review.rate}" %></li>
-			<% end %>
-
 		</ul>
-
+<% end %>
 		<%= render 'reviews/review_form', restaurant: restaurant %>
-
 		<%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
 		<%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
-		
-
 	<% end %>
 <% else %>
-<h1> no restaurants </h1>
+<h1> There is no current restaurant </h1>
 <% end %>
 <br>
+
 <h4>
 <%= link_to 'Add restaurant', new_restaurant_path %>
 </h4>

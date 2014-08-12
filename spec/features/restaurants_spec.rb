@@ -5,7 +5,7 @@ describe 'restaurant' do
 	context 'no restaurant' do
 		it 'should display input form and an error message' do
 			visit('/restaurants')
-			expect(page).to have_content('no restaurants')
+			expect(page).to have_content('There is no current restaurant Add restaurant')
 			expect(page).to have_link('Add restaurant')
 		end
 	end
