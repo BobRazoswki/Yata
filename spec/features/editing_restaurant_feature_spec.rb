@@ -11,7 +11,7 @@ describe '' do
 			 email: "a@a.com",
 			 password: "123456789",
 			 password_confirmation: "123456789")
-		login_as alex
+		login_as("a@a.com", "123456789")
 	end
 
 context 'logged as the creator' do

@@ -3,6 +3,17 @@ require 'rails_helper'
 describe 'create restaurant' do
 	context 'a valid restaurant' do
 
+		before(:each) do
+		Restaurant.create(name:"Nandos")
+		alex = User.create(
+			 first_name: "Bob",
+			 last_name: "Bob",
+			 profile_name: "Bob",
+			 email: "a@a.com",
+			 password: "123456789",
+			 password_confirmation: "123456789")
+		login_as("a@a.com", "123456789")
+	end
 		it 'promps the user to fill out a form' do
 			visit('/restaurants')
 			 click_link 'Add restaurant'
@@ -17,6 +28,17 @@ describe 'create restaurant' do
 	end
 
 	context 'a invalid restaurant' do
+		before(:each) do
+		Restaurant.create(name:"Nandos")
+		alex = User.create(
+			 first_name: "Bob",
+			 last_name: "Bob",
+			 profile_name: "Bob",
+			 email: "a@a.com",
+			 password: "123456789",
+			 password_confirmation: "123456789")
+		login_as("a@a.com", "123456789")
+	end
 		it 'promps an error to the user' do
 			 visit('/restaurants')
 			 click_link 'Add restaurant'
