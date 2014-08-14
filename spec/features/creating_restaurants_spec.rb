@@ -39,10 +39,20 @@ describe 'create restaurant' do
 			 password_confirmation: "123456789")
 		login_as("a@a.com", "123456789")
 	end
-		it 'promps an error to the user' do
+		it 'not enough letters' do
 			 visit('/restaurants')
 			 click_link 'Add restaurant'
 			 fill_in 'Name', :with => "N"
+			 fill_in 'Cuisine', :with => "chicken"
+			 click_button 'Add restaurant' 
+			 expect(page).to have_content("error")
+			 expect(current_path).to eq('/restaurants')
+		end
+
+		it 'not an uppercase' do
+			 visit('/restaurants')
+			 click_link 'Add restaurant'
+			 fill_in 'Name', :with => "nandos"
 			 fill_in 'Cuisine', :with => "chicken"
 			 click_button 'Add restaurant' 
 			 expect(page).to have_content("error")
@@ -53,15 +63,47 @@ describe 'create restaurant' do
 describe 'a user creates a restaurant' do 
 
 	context 'logged out' do
-		it '' do
-			
+
+		it 'not possible to add a restaurant' do
+			 visit('/restaurants')
+			 click_link 'Add restaurant'
+			 expect(page).to have_content("You need to sign in or sign up before continuing")
+			 expect(current_path).to eq('/users/sign_in')
 		end
+
 	end
 	
 
 	context 'logged in' do
-			it '' do
-			
+				before(:each) do
+		Restaurant.create(name:"Nandos")
+		alex = User.create(
+			 first_name: "Bob",
+			 last_name: "Bob",
+			 profile_name: "Bob",
+			 email: "a@a.com",
+			 password: "123456789",
+			 password_confirmation: "123456789")
+		login_as("a@a.com", "123456789")
+	end
+		it 'not enough letters' do
+			 visit('/restaurants')
+			 click_link 'Add restaurant'
+			 fill_in 'Name', :with => "N"
+			 fill_in 'Cuisine', :with => "chicken"
+			 click_button 'Add restaurant' 
+			 expect(page).to have_content("error")
+			 expect(current_path).to eq('/restaurants')
+		end
+
+		it 'not an uppercase' do
+			 visit('/restaurants')
+			 click_link 'Add restaurant'
+			 fill_in 'Name', :with => "nandos"
+			 fill_in 'Cuisine', :with => "chicken"
+			 click_button 'Add restaurant' 
+			 expect(page).to have_content("error")
+			 expect(current_path).to eq('/restaurants')
 		end
 	end
 end
