@@ -35,24 +35,10 @@ describe 'restaurant' do
 			 expect(current_path).to eq('/restaurants')
 		end
 
-		it 'update and edit' do
-			visit('/restaurants')
-			 click_link 'Edit Nandos'
-			 fill_in 'Name', :with => "NandosNew"
-			 fill_in 'Cuisine', :with => "chicken1"
-			 click_button 'Add restaurant'
-			 expect(page).to have_content("NandosNew chicken1")
-			 expect(current_path).to eq('/restaurants')
-		end
 
-		it 'delete' do
-			visit('/restaurants')
-			 click_link 'Delete Nandos'
-			 expect(page).not_to have_content("Nandos chicken")
-			 expect(page).to have_content("deleted")
-			 expect(current_path).to eq('/restaurants')
-		end
 		
 	end
+
+	
 
 end
