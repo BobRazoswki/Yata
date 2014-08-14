@@ -5,14 +5,15 @@
 			<h1> <%= restaurant.name %> </h1>
 			<p> <%= restaurant.cuisine %> </p>
 			<p> Average rate: <%= restaurant._average_rating %> </p>
-		
 			<button class='show_reviews'>Show reviews</button>
 					<ul class="display_reviews">
 						<% restaurant.reviews.each do |review| %>
 							<li> <%= "#{review.comment} #{review.rate}" %>
 								<em> <%= time_ago_in_words(review.created_at) %></em>
-								<span class="like-count"><%= review.likes.count %></span> Likes
+								<span class="like-count"><%= review.likes.count %><%= review.pluralize_likes %></span>
 								<%= link_to "Like", review_likes_path(review), class: 'like-link' %> 
+								<br>
+
 							</li>
 						<% end %>
 						<button class='hide_reviews'>Hide reviews</button>

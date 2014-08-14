@@ -16,7 +16,7 @@ $(document).ready(function() {
 			event.preventDefault();
 		
 			$.post(this.href, function(response) {
-				likeCount.text(response.new_like_count)
+				likeCount.text(response.new_like_count + response.new_sentence)
 			});
 		});
 
