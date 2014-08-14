@@ -1,41 +1,32 @@
-<% @rating = [] %>
 <% if @restaurants.any? %>
-
 	<% @restaurants.each do |restaurant| %>
 	<article class="restaurant_infos">
 		<section>
-		<h1> <%= restaurant.name %> </h1>
-		<p> <%= restaurant.cuisine %> </p>
-		<p> AVERAGE: <% restaurant.reviews.all.map do |each| %>
-					 <% @rating << each.rate %>
-					<% end %>
-				 <%=	@rating.sum.to_f / @rating.size %> </p>
-				 <button class='show_reviews'>Show reviews</button>
-		<ul id="display_reviews">
-			<% restaurant.reviews.each do |review| %>
-				<li> <%= "#{review.comment} #{review.rate}" %></li>
-				<% end %>
-		</ul>
-
-		<div class="crud">
-			<%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
-		<%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
-	</div>
+			<h1> <%= restaurant.name %> </h1>
+			<p> <%= restaurant.cuisine %> </p>
+			<p> Average rate: <%= restaurant._average_rating %> </p>
 		
-		<aside>
-		<%= render 'reviews/review_form', restaurant: restaurant %>
-		</aside>
+			<button class='show_reviews'>Show reviews</button>
+					<ul class="display_reviews">
+						<% restaurant.reviews.each do |review| %>
+							<li> <%= "#{review.comment} #{review.rate}" %>
+								<em> <%= time_ago_in_words(review.created_at) %></em>
+								<span class="like-count"><%= review.likes.count %></span> Likes
+								<%= link_to "Like", review_likes_path(review), class: 'like-link' %> 
+							</li>
+						<% end %>
+						<button class='hide_reviews'>Hide reviews</button>
+					</ul>
+				<div class="crud">
+					<%= link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant) %>
+					<%= link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete %>
+				</div>
+			<aside>
+			<%= render 'reviews/review_form', restaurant: restaurant %>
+			</aside>
 		</section>
-		
-		
 	<% end %>
-
-</article>
-
+	</article>
 <% else %>
-
-
-<h1> There is no current restaurant </h1>
-
-
+	<h1> There is no current restaurant </h1>
 <% end %>

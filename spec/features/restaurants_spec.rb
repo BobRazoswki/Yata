@@ -2,54 +2,40 @@ require 'rails_helper'
 
 describe 'restaurant' do 
 
-	context 'no restaurant' do
-		it 'should display input form and an error message' do
+	context 'if the database is empty' do
+		it 'it should display input form to add one and an error message' do
 			visit('/restaurants')
-			expect(page).to have_content('There is no current restaurant Add restaurant')
+			expect(page).to have_content('Add restaurant There is no current restaurant')
 			expect(page).to have_link('Add restaurant')
 		end
 	end
 
-	context 'bringing to the db' do
+	context 'the user can' do
 		
 		before(:each) do
-			Restaurant.create(name: "Nandos",
-				cuisine: "chicken")
+			Restaurant.create(name: "Nandos",cuisine: "chicken")
 		end
 
-		it 'create a restaurant' do
+		it 'see the restaurants' do
 			visit('/restaurants')
 			expect(page).to have_content('Nandos chicken')
 		end
 
-		it 'raise the counter of the restaurant' do
+		it 'raise the counter when it is created in the db' do
 			expect(Restaurant.count).to eq 1
 		end
-	end
 
-	describe 'visitors can create restaurants' do
-		before(:each) do
-			Restaurant.create(name: "Nandos",
-				cuisine: "chicken")
-		end
-		it 'ADD' do
+		it 'add' do
 			visit('/restaurants')
 			 click_link 'Add restaurant'
 			 fill_in 'Name', :with => "Nandos"
 			 fill_in 'Cuisine', :with => "chicken"
 			 click_button 'Add restaurant'
-
 			 expect(page).to have_content("Nandos chicken")
 			 expect(current_path).to eq('/restaurants')
 		end
-	end
 
-	describe 'visitors can edit restaurants' do
-		before(:each) do
-			Restaurant.create(name: "Nandos",
-				cuisine: "chicken")
-		end
-		it 'UPDATE / EDIT' do
+		it 'update and edit' do
 			visit('/restaurants')
 			 click_link 'Edit Nandos'
 			 fill_in 'Name', :with => "NandosNew"
@@ -58,21 +44,15 @@ describe 'restaurant' do
 			 expect(page).to have_content("NandosNew chicken1")
 			 expect(current_path).to eq('/restaurants')
 		end
-	end
 
-	describe 'visitors can create restaurants' do
-		before(:each) do
-			Restaurant.create(name: "Nandos",
-				cuisine: "chicken")
-		end
-		it 'DELETE' do
+		it 'delete' do
 			visit('/restaurants')
 			 click_link 'Delete Nandos'
 			 expect(page).not_to have_content("Nandos chicken")
 			 expect(page).to have_content("deleted")
 			 expect(current_path).to eq('/restaurants')
 		end
+		
 	end
-
 
 end
