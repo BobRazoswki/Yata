@@ -15,10 +15,6 @@ describe 'likes' do
 		expect(page).to have_content '1 Like'
 	end
 
-	it 'display the total of like',js: :true do
-		nine_likes
-		expect(page).to have_content("Total like: 9")
-	end
 
 end
 
